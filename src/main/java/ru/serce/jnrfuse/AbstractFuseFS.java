@@ -47,7 +47,10 @@ public abstract class AbstractFuseFS implements FuseFS {
 
     public AbstractFuseFS() {
         LibraryLoader<LibFuse> loader = LibraryLoader.create(LibFuse.class);
+        final LibDl dl = LibraryLoader.create(LibDl.class).failImmediately().load("iconv");
+        dl.dlopen("iconv", LibDl.RTLD_LAZY | LibDl.RTLD_GLOBAL);
         libFuse = loader.load("libfuse.so.2");
+        //libFuse = LibraryLoader.create(LibFuse.class).failImmediately().load("library");
 
         Runtime runtime = Runtime.getSystemRuntime();
         fuseOperations = new FuseOperations(runtime);
