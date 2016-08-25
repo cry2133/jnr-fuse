@@ -1,4 +1,4 @@
-
+package ru.serce.jnrfuse;
 public interface LibDl {
     public static final int RTLD_LAZY = 0x1;
     public static final int RTLD_NOW = 0x2;
